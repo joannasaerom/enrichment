@@ -12,9 +12,11 @@ import Button from "@material-ui/core/Button";
 
 import Airtable from "airtable";
 
+console.log("AddForm start before base called");
 const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE = process.env.REACT_APP_BASE;
 const base = new Airtable({ apiKey: API_KEY }).base(BASE);
+console.log("AddForm start after base called");
 
 class AddForm extends PureComponent {
   constructor(props) {

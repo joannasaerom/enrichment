@@ -10,6 +10,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 
+console.log("filter form");
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),

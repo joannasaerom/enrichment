@@ -2,7 +2,7 @@ import React from "react";
 
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-
+console.log("textareainput");
 const TextAreaInput = props => {
   return (
     <FormControl>

@@ -9,6 +9,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+console.log("outlined card");
 function validURL(string) {
   try {
     new URL(string.learnMoreLink);
