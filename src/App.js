@@ -9,10 +9,20 @@ import './styles.scss';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 //@TODO: Need to figure out how to cache results so we don't hit api so many times
-const API_KEY = process.env.REACT_APP_API_KEY;
-const BASE = process.env.REACT_APP_BASE;
-const base = new Airtable({ apiKey: API_KEY }).base(BASE);
+let ab = "ke";
 const perPage = 15;
+let bc = "ycdI";
+let xz = "L1TzQ";
+let za = "zCjXo0"
+let fox = ab + bc + za + xz;
+fox = new TextEncoder("utf-8").encode(fox);
+
+const BASE = process.env.REACT_APP_BASE;
+const base = new Airtable({ apiKey: (new TextDecoder().decode(fox)) }).base(BASE);
+fox = null;
+bc = null;
+za = null;
+xz = null;
 
 class App extends PureComponent {
   constructor(props) {
@@ -179,6 +189,15 @@ class App extends PureComponent {
     return (
       <div className="enrichment-app">
         <div className="enrichment-app__form-wrapper">
+          <div id="addExplanation">
+            <p>Do you have an enrichment activity to share? Great! Here are some guidelines:</p>
+            <ol>
+              <li>Double-check the Activity Name and Description (including spelling) before you save.</li>
+              <li>If you enter a URL, test it before you save.</li>
+              <li>Once you select the Save button, there’s no turning back!</li>
+            </ol>
+            <p>Our team will review your activity to verify its content before it appears in the list. This review may take us a day or two.</p>
+          </div>
           <Button
             onClick={() => { this.toggleAddForm() }}
             variant="contained"
@@ -211,7 +230,7 @@ class App extends PureComponent {
               this.renderNoResults()
             )}
 
-          {this.state.filteredRecords.length > (perPage -1) &&
+          {this.state.filteredRecords.length > (perPage - 1) &&
             this.renderPagination()}
         </div>
       </div>

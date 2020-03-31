@@ -12,9 +12,20 @@ import Button from "@material-ui/core/Button";
 
 import Airtable from "airtable";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+let ab = "ke";
+const perPage = 15;
+let bc = "ycdI";
+let xz = "L1TzQ";
+let za = "zCjXo0"
+let fox = ab + bc + za + xz;
+fox = new TextEncoder("utf-8").encode(fox);
+
 const BASE = process.env.REACT_APP_BASE;
-const base = new Airtable({ apiKey: API_KEY }).base(BASE);
+const base = new Airtable({ apiKey: (new TextDecoder().decode(fox)) }).base(BASE);
+fox = null;
+bc = null;
+za = null;
+xz = null;
 
 class AddForm extends PureComponent {
   constructor(props) {
@@ -86,6 +97,7 @@ class AddForm extends PureComponent {
             this.setState({'errorMessage': 'There was an error submitting the form. Please try again.'});
           }
           // console.log(record.getId());
+          document.getElementById("addExplanation").innerHTML = "<p>Thank you for submitting. We are currently reviewing it, and it will be likely added here within 2-3 days. Feel free to submit more activities!</p>"
         }
       );
       this.props.action(false);
