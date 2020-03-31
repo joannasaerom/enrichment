@@ -1,25 +1,20 @@
 import React, { PureComponent } from "react";
 import moment from 'moment';
-
 import TextInput from "../components/FormInput/TextInput";
 import TextAreaInput from "../components/FormInput/TextAreaInput";
 import SelectInput from "../components/FormInput/SelectInput";
 import SelectMultipleInput from "../components/FormInput/SelectMultipleInput";
-
 import Card from '@material-ui/core/Card';
-
 import Button from "@material-ui/core/Button";
-
 import Airtable from "airtable";
 
+
 let ab = "ke";
-const perPage = 15;
 let bc = "ycdI";
 let xz = "L1TzQ";
 let za = "zCjXo0"
 let fox = ab + bc + za + xz;
 fox = new TextEncoder("utf-8").encode(fox);
-
 const BASE = process.env.REACT_APP_BASE;
 const base = new Airtable({ apiKey: (new TextDecoder().decode(fox)) }).base(BASE);
 fox = null;

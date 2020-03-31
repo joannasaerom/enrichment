@@ -9,14 +9,15 @@ import './styles.scss';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 //@TODO: Need to figure out how to cache results so we don't hit api so many times
+
+const perPage = 15; //how many results show on each page
+
 let ab = "ke";
-const perPage = 15;
 let bc = "ycdI";
 let xz = "L1TzQ";
 let za = "zCjXo0"
 let fox = ab + bc + za + xz;
 fox = new TextEncoder("utf-8").encode(fox);
-
 const BASE = process.env.REACT_APP_BASE;
 const base = new Airtable({ apiKey: (new TextDecoder().decode(fox)) }).base(BASE);
 fox = null;
