@@ -92,7 +92,7 @@ class AddForm extends PureComponent {
             this.setState({'errorMessage': 'There was an error submitting the form. Please try again.'});
           }
           // console.log(record.getId());
-          document.getElementById("addExplanation").innerHTML = "<p>Thank you for submitting. We are currently reviewing it, and it will be likely added here within 2-3 days. Feel free to submit more activities!</p>"
+          document.getElementById("submitted-notification").innerHTML = "<p>Thanks for sharing your enrichment activity with us! Our team will review it to verify its content (and rule out duplicates) before it appears on the list. This review may take us a day or two.</p>"
         }
       );
       this.props.action(false);
@@ -125,6 +125,15 @@ class AddForm extends PureComponent {
 
     return (
       <Card className="formCard">
+        <div id="addExplanation">
+            <h3>Do you have an enrichment activity to share? Great! Here are some guidelines:</h3>
+            <ol>
+              <li>Double-check the Activity Name and Description (including spelling) before you save.</li>
+              <li>If you enter a URL, test it before you save.</li>
+              <li>Once you select the Save button, there’s no turning back!</li>
+            </ol>
+            <p>Our team will review your activity to verify its content before it appears in the list. This review may take us a day or two.</p>
+          </div>
         <form id="add-form">
           <div className="add-form__field-wrapper">
             <div className="add-form__field-wrapper-column">
@@ -208,10 +217,9 @@ class AddForm extends PureComponent {
             </div>
           </div>
 
-          <Button
+          <Button variant="contained" size="large" color="primary" disableElevation
             className="add-form__add-button"
             onClick={() => { this.addForm() }}
-            variant="contained"
           >
             Add
           </Button>

@@ -73,14 +73,15 @@ class App extends PureComponent {
 
   // HANDLE PAGE CHANGE
   handlePageChange = (event, value) => {
-    window.scrollTo(0, 0);
+    let topElement = document.getElementsByClassName("pagination-element")[0];
+    topElement.scrollIntoView();
     // console.log(this.state.page);
     // console.log(this.state.filteredRecords);
     // console.log(this.state.viewableResults);
     this.setState({ page: value })
-    console.log(perPage);
-    console.log(value);
-    console.log(this.state.filteredRecords.length)
+    //console.log(perPage);
+    //console.log(value);
+    //console.log(this.state.filteredRecords.length)
     if (perPage * value >= this.state.filteredRecords.length)
       this.setState({
         viewableResults: (this.state.filteredRecords.slice((value - 1) * perPage))
@@ -169,8 +170,8 @@ class App extends PureComponent {
     else {
       return (
         <div>
-          <h2>Sorry, we don't have activities with what you're looking for.</h2>
-          <p>Perhaps try changing your filters.</p>
+          <h2>Oops, none of our activities match yourr filter criteria. Please change your filter(s) and try again.</h2>
+          <p>Please change your filter(s) and try again.</p>
         </div>
       )
     }
@@ -179,7 +180,7 @@ class App extends PureComponent {
   //pagination buttons
   renderPagination() {
     return (
-      <Pagination count={Math.ceil(this.state.filteredRecords.length / perPage)}
+      <Pagination className="pagination-element" count={Math.ceil(this.state.filteredRecords.length / perPage)}
         page={this.state.page} size="small"
         onChange={this.handlePageChange} showFirstButton showLastButton color="primary" />
     )
@@ -190,18 +191,11 @@ class App extends PureComponent {
     return (
       <div className="enrichment-app">
         <div className="enrichment-app__form-wrapper">
-          <div id="addExplanation">
-            <p>Do you have an enrichment activity to share? Great! Here are some guidelines:</p>
-            <ol>
-              <li>Double-check the Activity Name and Description (including spelling) before you save.</li>
-              <li>If you enter a URL, test it before you save.</li>
-              <li>Once you select the Save button, there’s no turning back!</li>
-            </ol>
-            <p>Our team will review your activity to verify its content before it appears in the list. This review may take us a day or two.</p>
+          <div id="submitted-notification">
           </div>
           <Button
             onClick={() => { this.toggleAddForm() }}
-            variant="contained"
+            variant="contained" 
           >
             {showAddForm ? 'Hide Form' : 'Add Activity'}
           </Button>
