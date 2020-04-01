@@ -126,7 +126,7 @@ class AddForm extends PureComponent {
     return (
       <Card className="formCard">
         <div id="addExplanation">
-            <h3>Do you have an enrichment activity to share? Great! Here are some guidelines:</h3>
+            <h4>Do you have an enrichment activity to share? Great! Here are some guidelines:</h4>
             <ol>
               <li>Double-check the Activity Name and Description (including spelling) before you save.</li>
               <li>If you enter a URL, test it before you save.</li>

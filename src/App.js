@@ -8,6 +8,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import './styles.scss';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+
 //@TODO: Need to figure out how to cache results so we don't hit api so many times
 
 const perPage = 15; //how many results show on each page
