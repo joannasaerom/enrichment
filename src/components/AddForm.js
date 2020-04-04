@@ -217,7 +217,7 @@ class AddForm extends PureComponent {
             </div>
           </div>
 
-          <Button variant="contained" size="large" color="primary" disableElevation
+          <Button variant="contained" size="medium" color="primary" disableElevation
             className="add-form__add-button"
             onClick={() => { this.addForm() }}
           >
