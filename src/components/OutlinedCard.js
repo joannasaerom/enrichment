@@ -6,7 +6,6 @@ import '../styles.scss';
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 import Link from '@material-ui/core/Link';
@@ -45,7 +44,7 @@ const styles = theme => ({
 
 });
 
-const preventDefault = (event) => event.preventDefault();
+const preventDefault = (event) => event.preventDefault(); //needed for link
 
 class OutlinedCard extends PureComponent {
   static propTypes = {
@@ -116,6 +115,3 @@ class OutlinedCard extends PureComponent {
 }
 
 export default withStyles(styles)(OutlinedCard);
-{/*<Button variant="contained" size="medium"  color="primary" disableElevation target="_blank" href={learnMoreLink} >
-              Learn More
-          </Button>*/}

@@ -52,7 +52,6 @@ class AddForm extends PureComponent {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-
   addForm = () => {
     const {
       activityName,
@@ -105,7 +104,6 @@ class AddForm extends PureComponent {
   hideForm = () => {
     this.props.action(false);
   }
-
 
   render() {
     const date = new Date();
@@ -228,8 +226,8 @@ class AddForm extends PureComponent {
               className="add-form__del-button" onClick={() => { this.hideForm() }}
             >Cancel</Button>
 
-            <Button variant="contained" size="large" 
-              className={"add-form__add-button" + " primaryBtn"}
+            <Button variant="contained" size="large" color="primary" 
+              className={"add-form__add-button"}
               onClick={() => { this.addForm() }}
             >
               Add

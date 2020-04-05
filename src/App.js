@@ -9,8 +9,8 @@ import './styles.scss';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
+// change primary color to match style of enrichmentactivities.org
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -24,6 +24,7 @@ const theme = createMuiTheme({
 
 const perPage = 10; //how many results show on each page
 
+// Bad Practice, but only solution for front-end
 let ab = "ke";
 let bc = "ycdI";
 let xz = "L1TzQ";
@@ -60,40 +61,29 @@ class App extends PureComponent {
           { field: 'Activity Name', direction: 'asc' }], filterByFormula: 'FIND("Yes",{Reviewed})'
       })
       .eachPage((data, fetchNextPage) => {
-        // console.log(data.length);
         let records = this.state.records;
         this.setState({
           records: records.concat(data)
         });
         if (count === 0) {
           count++;
-          // console.log(data.slice(perPage - 1));
           this.setState({
             viewableResults: data.slice(0, perPage)
           })
-          // console.log("viewable" + this.state.viewableResults);
         }
         this.setState({
           filteredRecords: records.concat(data),
         });
-        // console.log(records.length);
         // Airtable API’s way of giving us the next record in our spreadsheet
         fetchNextPage();
       });
 
   }
 
-  // HANDLE PAGE CHANGE
   handlePageChange = (event, value) => {
     let topElement = document.getElementsByClassName("pagination-element")[0];
     topElement.scrollIntoView();
-    // console.log(this.state.page);
-    // console.log(this.state.filteredRecords);
-    // console.log(this.state.viewableResults);
     this.setState({ page: value })
-    //console.log(perPage);
-    //console.log(value);
-    //console.log(this.state.filteredRecords.length)
     if (perPage * value >= this.state.filteredRecords.length)
       this.setState({
         viewableResults: (this.state.filteredRecords.slice((value - 1) * perPage))
@@ -171,15 +161,15 @@ class App extends PureComponent {
   }
 
   renderNoResults() {
-    if (this.state.records.length == 0) {
+    if (this.state.records.length == 0) { //Loading
       return (
         <div id="loadingDiv">
           <h3 id="loadingText">We're getting the information for you. It should only take a few moments...</h3>
-          <CircularProgress  size={100} />
+          <CircularProgress size={100} />
         </div>
       )
     }
-    else {
+    else { //no results
       return (
         <div>
           <h3>Oops, none of our activities match your filter criteria. Please change your filter(s) and try again.</h3>
@@ -202,46 +192,46 @@ class App extends PureComponent {
     const { showAddForm } = this.state;
     return (
       <ThemeProvider theme={theme}>
-      <div className="enrichment-app">
-        <div className="enrichment-app__form-wrapper">
-          <div id="submitted-notification">
+        <div className="enrichment-app">
+          <div className="enrichment-app__form-wrapper">
+            <div id="submitted-notification">
+            </div>
+            {showAddForm ? null : <Button color="primary"
+              size="large" onClick={() => { this.toggleAddForm() }}
+              variant="contained"
+            >
+              {showAddForm ? 'Hide Form' : 'Add Activity'}
+            </Button>}
           </div>
-          {showAddForm ? null: <Button className={"primaryBtn"}
-            size="large" onClick={() => { this.toggleAddForm() }}
-            variant="contained"
-          >
-            {showAddForm ? 'Hide Form' : 'Add Activity'}
-          </Button> }
-        </div>
-        {showAddForm && <AddForm action={this.toggleAddFormFromChild} />}
+          {showAddForm && <AddForm action={this.toggleAddFormFromChild} />}
 
-        <div className="resultsDiv">
-          <FilterForm sendFilters={this.filterResults} />
-          {this.state.filteredRecords.length > (perPage - 1) &&
-            this.renderPagination()}
-          {this.state.viewableResults.length > 0 ? (
-            this.state.viewableResults.map((record, index) => (
-              <div key={index}>
-                <OutlinedCard
-                  activityName={record.fields["Activity Name"]}
-                  activityPlace={record.fields["Location"]}
-                  description={record.fields["Description"]} // not in API?
-                  gradeRange={record.fields["Recommended Ages"]}
-                  parentInvolvement={record.fields["Parent Involvement"]}
-                  screen={record.fields["Device Required"]}
-                  preparation={record.fields["Preparation/Supplies"]}
-                  learnMoreLink={record.fields["Link"]}
-                />
-              </div>
-            ))
-          ) : (
-              this.renderNoResults()
-            )}
+          <div className="resultsDiv">
+            <FilterForm sendFilters={this.filterResults} />
+            {this.state.filteredRecords.length > (perPage - 1) &&
+              this.renderPagination()}
+            {this.state.viewableResults.length > 0 ? (
+              this.state.viewableResults.map((record, index) => (
+                <div key={index}>
+                  <OutlinedCard
+                    activityName={record.fields["Activity Name"]}
+                    activityPlace={record.fields["Location"]}
+                    description={record.fields["Description"]} // not in API?
+                    gradeRange={record.fields["Recommended Ages"]}
+                    parentInvolvement={record.fields["Parent Involvement"]}
+                    screen={record.fields["Device Required"]}
+                    preparation={record.fields["Preparation/Supplies"]}
+                    learnMoreLink={record.fields["Link"]}
+                  />
+                </div>
+              ))
+            ) : (
+                this.renderNoResults()
+              )}
 
-          {this.state.filteredRecords.length > (perPage - 1) &&
-            this.renderPagination()}
+            {this.state.filteredRecords.length > (perPage - 1) &&
+              this.renderPagination()}
+          </div>
         </div>
-      </div>
       </ThemeProvider>
     );
   }

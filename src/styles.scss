@@ -1,12 +1,11 @@
 $breakpoint-tablet: 768px;
 
-.primaryBtn{
-  background-color:#ED5F5F !important;
-  color: white !important;
-}
+//learn more link in outlinedcard
 .learnMoreLink{
   margin-left: 10px !important;
 }
+
+//div around cancel and add button in addform
 #btnDiv{
   display: flex;
   justify-content: flex-end;
@@ -120,11 +119,14 @@ $breakpoint-tablet: 768px;
   margin-left: 16px;
 }
 
+
+// Loading
 #loadingDiv{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 #loadingDiv h2{
   width: 100%;
   text-align: center;
