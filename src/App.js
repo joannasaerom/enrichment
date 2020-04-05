@@ -55,7 +55,7 @@ class App extends PureComponent {
 
   componentDidMount() {
     let count = 0;
-    base("Activities")
+    base("Enrichment Activities")
       .select({
         view: "Grid view", /*maxRecords: 100,*/ sort: [
           { field: 'Activity Name', direction: 'asc' }], filterByFormula: 'FIND("Yes",{Reviewed})'

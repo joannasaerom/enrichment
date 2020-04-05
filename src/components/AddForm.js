@@ -75,7 +75,7 @@ class AddForm extends PureComponent {
     }
     else {
       this.setState({ 'errorMessage': '' });
-      base("Activities").create(
+      base("Enrichment Activities").create(
         {
           "Activity Name": activityName,
           "Description": description,
