@@ -9,6 +9,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import Link from '@material-ui/core/Link';
+
 function validURL(string) {
   try {
     new URL(string.learnMoreLink);
@@ -42,6 +44,8 @@ const styles = theme => ({
   }
 
 });
+
+const preventDefault = (event) => event.preventDefault();
 
 class OutlinedCard extends PureComponent {
   static propTypes = {
@@ -99,9 +103,11 @@ class OutlinedCard extends PureComponent {
         </CardContent>
         <CardActions>
           {validURL({learnMoreLink}) && (
-            <Button variant="contained" size="medium"  color="primary" disableElevation target="_blank" href={learnMoreLink} >
-              Learn More
-            </Button>
+             <Typography className={classes.root+" learnMoreLink"}>
+             <Link href={learnMoreLink} onClick={preventDefault}>
+               Learn More
+             </Link>
+            </Typography> 
           )}
         </CardActions>
       </Card>
@@ -110,3 +116,6 @@ class OutlinedCard extends PureComponent {
 }
 
 export default withStyles(styles)(OutlinedCard);
+{/*<Button variant="contained" size="medium"  color="primary" disableElevation target="_blank" href={learnMoreLink} >
+              Learn More
+          </Button>*/}

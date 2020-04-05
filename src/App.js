@@ -9,9 +9,20 @@ import './styles.scss';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#ED5F5F',
+    },
+  },
+});
+
+
 //@TODO: Need to figure out how to cache results so we don't hit api so many times
 
-const perPage = 15; //how many results show on each page
+const perPage = 10; //how many results show on each page
 
 let ab = "ke";
 let bc = "ycdI";
@@ -163,15 +174,15 @@ class App extends PureComponent {
     if (this.state.records.length == 0) {
       return (
         <div id="loadingDiv">
-          <h2>We're getting the information for you. It should only take a few moments...</h2>
-          <CircularProgress id="loadingGraphic" size={100} />
+          <h3 id="loadingText">We're getting the information for you. It should only take a few moments...</h3>
+          <CircularProgress  size={100} />
         </div>
       )
     }
     else {
       return (
         <div>
-          <h2>Oops, none of our activities match yourr filter criteria. Please change your filter(s) and try again.</h2>
+          <h3>Oops, none of our activities match your filter criteria. Please change your filter(s) and try again.</h3>
           <p>Please change your filter(s) and try again.</p>
         </div>
       )
@@ -190,16 +201,17 @@ class App extends PureComponent {
   render() {
     const { showAddForm } = this.state;
     return (
+      <ThemeProvider theme={theme}>
       <div className="enrichment-app">
         <div className="enrichment-app__form-wrapper">
           <div id="submitted-notification">
           </div>
-          <Button
-            onClick={() => { this.toggleAddForm() }}
-            variant="contained" 
+          {showAddForm ? null: <Button className={"primaryBtn"}
+            size="large" onClick={() => { this.toggleAddForm() }}
+            variant="contained"
           >
             {showAddForm ? 'Hide Form' : 'Add Activity'}
-          </Button>
+          </Button> }
         </div>
         {showAddForm && <AddForm action={this.toggleAddFormFromChild} />}
 
@@ -230,6 +242,7 @@ class App extends PureComponent {
             this.renderPagination()}
         </div>
       </div>
+      </ThemeProvider>
     );
   }
 }

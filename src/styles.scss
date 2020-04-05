@@ -1,5 +1,17 @@
 $breakpoint-tablet: 768px;
 
+.primaryBtn{
+  background-color:#ED5F5F !important;
+  color: white !important;
+}
+.learnMoreLink{
+  margin-left: 10px !important;
+}
+#btnDiv{
+  display: flex;
+  justify-content: flex-end;
+}
+
 .enrichment-app {
   padding: 1rem;
   background-color: #F0F8FF !important;
@@ -66,8 +78,16 @@ $breakpoint-tablet: 768px;
   }
 
   &__add-button {
+    min-width: 10rem !important;
     @media (max-width: $breakpoint-tablet) {
       width: 100%;
+    }
+  }
+  &__del-button {
+    margin-right: 1rem !important;
+    @media (max-width: $breakpoint-tablet) {
+      width: 100%;
+      margin-bottom: .5rem !important;
     }
   }
 
@@ -108,4 +128,9 @@ $breakpoint-tablet: 768px;
 #loadingDiv h2{
   width: 100%;
   text-align: center;
+}
+
+#loadingText{
+  text-align: center;
+  width: 100%;
 }
