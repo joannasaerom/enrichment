@@ -10,6 +10,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 
+import SelectMultipleInput from "../components/FormInput/SelectMultipleInput";
+
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -22,48 +24,49 @@ const useStyles = makeStyles(theme => ({
 
 export default function FilterForm(props) {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
+  const [age, setAge] = React.useState([]);
   const [place, setPlace] = React.useState("");
   const [involvement, setInvolvement] = React.useState("");
   const [screens, setScreens] = React.useState("");
   const [search, setSearch] = React.useState("");
+  const ageOptions = ["All Ages", "Infant (0-12 months)", "Toddler (12-36 months)", "Preschool (ages 3-5)", "Kindergarten", "Grades 1-2", "Grades 3-4", "Middle School", "High School"];
 
   const handleChange = event => {
-    if (event.target.name === "age") {
-      let age = event.target.value;
+    let age = [];
+    let place  = "";
+    let screens = "";
+    let search = "";
+    let involvement = "";
+    if (event.target.name == "age") {
+      age = event.target.value;
       setAge(event.target.value);
-      props.sendFilters({age, place, involvement, screens, search });
     }
     else if (event.target.name === "place") {
-      let place = event.target.value;
+      place = event.target.value;
       setPlace(event.target.value);
-      props.sendFilters({ age, place, involvement, screens, search });
     }
     else if (event.target.name === "involvement") {
-      let involvement = event.target.value;
+      involvement = event.target.value;
       setInvolvement(event.target.value);
-      props.sendFilters({ age, place, involvement, screens, search });
     }
     else if (event.target.name === "screens") {
-      let screens = event.target.value;
+      screens = event.target.value;
       setScreens(event.target.value);
-      props.sendFilters({ age, place, involvement, screens, search });
     }
     else if (event.target.name === "search") {
-      let search = event.target.value;
+      search = event.target.value;
       setSearch(event.target.value);
-      props.sendFilters({ age, place, involvement, screens, search });
     }
-
+    props.sendFilters({ age, place, involvement, screens, search });
   };
 
   const clearForm = () => {
-    setAge("");
+    setAge([]);
     setPlace("");
     setInvolvement("");
     setScreens("");
     setSearch("");
-    let age = "";
+    let age = [];
     let place = "";
     let involvement = "";
     let screens = "";
@@ -74,7 +77,17 @@ export default function FilterForm(props) {
   return (
     <div className="filter-form" id="filter-form">
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+
+        <SelectMultipleInput
+          id="input-age"
+          labelId="input-age-label"
+          name="age"
+          label="Age"
+          handleChange={handleChange}
+          value={age}
+          options={ageOptions}
+        />
+        {/*
         <Select
           name="age"
           labelId="demo-simple-select-label"
@@ -99,7 +112,7 @@ export default function FilterForm(props) {
           <MenuItem value={"Grades 4-5"}>Grades 4-5</MenuItem>
           <MenuItem value={"Middle School"}>Middle School</MenuItem>
           <MenuItem value={"High School"}>High School</MenuItem>
-        </Select>
+</Select>*/}
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Place</InputLabel>
@@ -148,7 +161,7 @@ export default function FilterForm(props) {
       </FormControl>
       <FormControl className="filter-form__search-field">
         <InputLabel htmlFor="input-with-icon-adornment">
-          Search an Activity
+          Search
         </InputLabel>
         <Input
           name="search"

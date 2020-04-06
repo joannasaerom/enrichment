@@ -122,23 +122,33 @@ class App extends PureComponent {
       if (!record.fields["Device Required"]) {
         record.fields["Device Required"] = "";
       }
-      //edge cases of location
-      let test = false;
-      if (filters.place == "") { test = true }
+      // location filter
+      let locationBool = false;
+      if (filters.place == "") { locationBool = true }
       else if (compareStrings(record.fields["Location"], filters.place)) {
         if (compareStrings(record.fields["Location"], "and") && compareStrings(filters.place, "and")) {
-          test = true;
+          locationBool = true;
         }
         else {
           if (!compareStrings(record.fields["Location"], "and") && compareStrings(record.fields["Location"], filters.place)) {
-            test = true;
+            locationBool = true;
           }
         }
       }
-      //filtering
+      //age filter
+      let ageBool = true;
+      if (filters.age.length != 0) {
+        for (let ageRange of filters.age) {
+          if (!compareStrings(record.fields["Recommended Ages"], ageRange)) {
+            ageBool = false;
+            break;
+          }
+        }
+      }
+      //all filters
       return (
-        compareStrings(record.fields["Device Required"], filters.screens) && test &&
-        compareStrings(record.fields["Recommended Ages"], filters.age) &&
+        compareStrings(record.fields["Device Required"], filters.screens) && locationBool &&
+        ageBool &&
         compareStrings(record.fields["Parent Involvement"], filters.involvement) &&
         (compareStrings(record.fields["Description"], filters.search) ||
           compareStrings(record.fields["Activity Name"], filters.search))
