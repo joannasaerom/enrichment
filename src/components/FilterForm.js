@@ -29,7 +29,7 @@ export default function FilterForm(props) {
   const [involvement, setInvolvement] = React.useState("");
   const [screens, setScreens] = React.useState("");
   const [search, setSearch] = React.useState("");
-  const ageOptions = ["All Ages", "Infant (0-12 months)", "Toddler (12-36 months)", "Preschool (ages 3-5)", "Kindergarten", "Grades 1-2", "Grades 3-4", "Middle School", "High School"];
+  const ageOptions = ["All Ages", "Infant (0-12 months)", "Toddler (12-36 months)", "Preschool (ages 3-5)", "Kindergarten", "Grades 1-3", "Grades 4-6", "Middle School", "High School"];
 
   const handleChange = event => {
     let age = [];
