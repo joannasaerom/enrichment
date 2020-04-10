@@ -103,7 +103,7 @@ class OutlinedCard extends PureComponent {
         <CardActions>
           {validURL({learnMoreLink}) && (
              <Typography className={classes.root+" learnMoreLink"}>
-             <Link href={learnMoreLink} onClick={preventDefault}>
+             <Link href={learnMoreLink} target={"_blank"}>
                Learn More
              </Link>
             </Typography> 
