@@ -32,32 +32,31 @@ export default function FilterForm(props) {
   const ageOptions = ["All Ages", "Infant (0-12 months)", "Toddler (12-36 months)", "Preschool (ages 3-5)", "Kindergarten", "Grades 1-3", "Grades 4-6", "Middle School", "High School"];
 
   const handleChange = event => {
-    let age = [];
-    let place  = "";
-    let screens = "";
-    let search = "";
-    let involvement = "";
     if (event.target.name == "age") {
-      age = event.target.value;
+      let age = event.target.value;
       setAge(event.target.value);
+      props.sendFilters({ age, place, involvement, screens, search });
     }
     else if (event.target.name === "place") {
-      place = event.target.value;
+      let place = event.target.value;
       setPlace(event.target.value);
+      props.sendFilters({ age, place, involvement, screens, search });
     }
     else if (event.target.name === "involvement") {
-      involvement = event.target.value;
+      let involvement = event.target.value;
       setInvolvement(event.target.value);
+      props.sendFilters({ age, place, involvement, screens, search });
     }
     else if (event.target.name === "screens") {
-      screens = event.target.value;
+      let screens = event.target.value;
       setScreens(event.target.value);
+      props.sendFilters({ age, place, involvement, screens, search });
     }
     else if (event.target.name === "search") {
-      search = event.target.value;
+      let search = event.target.value;
       setSearch(event.target.value);
+      props.sendFilters({ age, place, involvement, screens, search });
     }
-    props.sendFilters({ age, place, involvement, screens, search });
   };
 
   const clearForm = () => {
