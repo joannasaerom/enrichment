@@ -203,17 +203,7 @@ class App extends PureComponent {
     return (
       <ThemeProvider theme={theme}>
         <div className="enrichment-app">
-          <div className="enrichment-app__form-wrapper">
-            <div id="submitted-notification">
-            </div>
-            {showAddForm ? null : <Button color="primary"
-              size="large" onClick={() => { this.toggleAddForm() }}
-              variant="contained"
-            >
-              {showAddForm ? 'Hide Form' : 'Add Activity'}
-            </Button>}
-          </div>
-          {showAddForm && <AddForm action={this.toggleAddFormFromChild} />}
+
 
           <div className="resultsDiv">
             <FilterForm sendFilters={this.filterResults} />

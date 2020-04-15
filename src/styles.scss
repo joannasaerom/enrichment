@@ -16,15 +16,10 @@ $breakpoint-tablet: 768px;
   background-color: #F0F8FF !important;
 }
 
-//Results Div
-.resultsDiv{
-  margin: 1rem auto;
-  border-top: 2px gray solid;
-}
 
 //filter form
 .filter-form {
-  margin: 2rem auto 3rem auto;
+  margin: 0rem auto 3rem auto;
   align-items: stretch;
   display: flex;
   flex-direction: column;
