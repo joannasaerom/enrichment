@@ -25,11 +25,12 @@ const useStyles = makeStyles(theme => ({
 export default function FilterForm(props) {
   const classes = useStyles();
   const [age, setAge] = React.useState([]);
-  const [place, setPlace] = React.useState("");
+  const [place, setPlace] = React.useState([]);
   const [involvement, setInvolvement] = React.useState("");
   const [screens, setScreens] = React.useState("");
   const [search, setSearch] = React.useState("");
   const ageOptions = ["All Ages", "Infant (0-12 months)", "Toddler (12-36 months)", "Preschool (ages 3-5)", "Kindergarten", "Grades 1-3", "Grades 4-6", "Middle School", "High School"];
+  const placeOptions = ["Indoor", "Outdoor"];
 
   const handleChange = event => {
     if (event.target.name == "age") {
@@ -61,7 +62,7 @@ export default function FilterForm(props) {
 
   const clearForm = () => {
     setAge([]);
-    setPlace("");
+    setPlace([]);
     setInvolvement("");
     setScreens("");
     setSearch("");
@@ -86,47 +87,17 @@ export default function FilterForm(props) {
           value={age}
           options={ageOptions}
         />
-        {/*
-        <Select
-          name="age"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          onChange={handleChange}
-          value={age}
-        >
-          <MenuItem value={""}>No preference</MenuItem>
-          <MenuItem value={"All Ages"}>All Ages</MenuItem>
-          <MenuItem value={"Infant (0-12 months)"}>
-            Infant (0-12 months)
-          </MenuItem>
-          <MenuItem value={"Toddler (12-36 months)"}>
-            Toddler (12-36 months)
-          </MenuItem>
-          <MenuItem value={"Preschool (ages 3-5)"}>
-            Preschool (ages 3-5)
-          </MenuItem>
-          <MenuItem value={"Kindergarten"}>Kindergarten</MenuItem>
-          <MenuItem value={"Grades 1-2"}>Grades 1-2</MenuItem>
-          <MenuItem value={"Grades 3-4"}>Grades 3-4</MenuItem>
-          <MenuItem value={"Grades 4-5"}>Grades 4-5</MenuItem>
-          <MenuItem value={"Middle School"}>Middle School</MenuItem>
-          <MenuItem value={"High School"}>High School</MenuItem>
-</Select>*/}
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Place</InputLabel>
-        <Select
+        <SelectMultipleInput
+          id="input-place"
+          labelId="input-place-label"
           name="place"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          onChange={handleChange}
+          label="Place"
+          handleChange={handleChange}
           value={place}
-        >
-          <MenuItem value={""}>No preference</MenuItem>
-          <MenuItem value={"Indoor"}>Indoor</MenuItem>
-          <MenuItem value={"Outdoor"}>Outdoor</MenuItem>
-          <MenuItem value={"Both Indoor and Outdoor"}>Both Indoor and Outdoor</MenuItem>
-        </Select>
+          options={placeOptions}
+        />
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Screens</InputLabel>

@@ -121,15 +121,12 @@ class App extends PureComponent {
         record.fields["Device Required"] = "";
       }
       // location filter
-      let locationBool = false;
-      if (filters.place == "") { locationBool = true }
-      else if (compareStrings(record.fields["Location"], filters.place)) {
-        if (compareStrings(record.fields["Location"], "and") && compareStrings(filters.place, "and")) {
-          locationBool = true;
-        }
-        else {
-          if (!compareStrings(record.fields["Location"], "and") && compareStrings(record.fields["Location"], filters.place)) {
-            locationBool = true;
+      let locationBool = true;
+      if (filters.place.length != 0) {
+        for (let location of filters.place) {
+          if (!compareStrings(record.fields["Location"], location)) {
+            locationBool = false;
+            break;
           }
         }
       }
