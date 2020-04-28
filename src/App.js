@@ -169,7 +169,6 @@ class App extends PureComponent {
       return (
         <div>
           <h3>Oops, none of our activities match your filter criteria. Please change your filter(s) and try again.</h3>
-          <p>Please change your filter(s) and try again.</p>
         </div>
       )
     }
