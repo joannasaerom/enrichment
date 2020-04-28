@@ -42,7 +42,6 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      showAddForm: false,
       records: [],
       filteredRecords: [],
       filters: [],
@@ -50,7 +49,6 @@ class App extends PureComponent {
       viewableResults: []
     };
     this.filterResults = this.filterResults.bind(this);
-    this.toggleAddFormFromChild = this.toggleAddFormFromChild.bind(this);
   }
 
   componentDidMount() {
@@ -161,15 +159,6 @@ class App extends PureComponent {
     });
   }
 
-  toggleAddForm() {
-    const { showAddForm } = this.state;
-    this.setState({ 'showAddForm': !showAddForm });
-  }
-
-  toggleAddFormFromChild(bool) {
-    this.setState({ 'showAddForm': bool });
-  }
-
   renderNoResults() {
     if (this.state.records.length == 0) { //Loading
       return (
@@ -199,7 +188,6 @@ class App extends PureComponent {
   }
 
   render() {
-    const { showAddForm } = this.state;
     return (
       <ThemeProvider theme={theme}>
         <div className="enrichment-app">
