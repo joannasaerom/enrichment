@@ -73,7 +73,7 @@ class OutlinedCard extends PureComponent {
     return (
       <Card className={classes.root} variant="outlined">
         <CardContent>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h5" component="h3">
             {activityName}
           </Typography>
           <Typography
